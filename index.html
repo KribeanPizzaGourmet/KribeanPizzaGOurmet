@@ -81,89 +81,8 @@
   </section>
   <div class="container">
     <h2>Menú</h2>
-    <button class="btn-primary" onclick="toggleSection('pizzasCompletas')">Pizzas Familiares</button>
     <button class="btn-primary" onclick="toggleSection('pizzas')">Porciones De Pizza</button>
     <button class="btn-primary" onclick="toggleSection('bebidas')">Bebidas</button>
-
-    <div id="pizzasCompletas" class="menu-section" style="display: none;">
-      <!-- Menu de pizzas familiares -->
-      <div class="menu-item">
-        <alt="Pizza Familiar Pollo con Jamón">
-        <h3>Pizza Familiar Pollo con Jamón</h3>
-        <span>$48000.00</span>
-        <div class="quantity-control">
-          <button onclick="changeQuantity('pizza1', -1)">-</button>
-          <input type="number" id="pizza1" value="0" min="0" max="50" readonly>
-          <button onclick="changeQuantity('pizza1', 1)">+</button>
-        </div>
-        <button class="btn-primary" onclick="addToCart('Pizza Familiar Pollo con Jamón', 48000, 'pizza1')">Añadir al carrito</button>
-      </div>
-      <div class="menu-item">
-        <alt="Pizza Familiar Jamón Con Queso">
-        <h3>Pizza Familiar Jamón Con Queso</h3>
-        <span>$48000.00</span>
-        <div class="quantity-control">
-          <button onclick="changeQuantity('pizza2', -1)">-</button>
-          <input type="number" id="pizza2" value="0" min="0" max="50" readonly>
-          <button onclick="changeQuantity('pizza2', 1)">+</button>
-        </div>
-        <button class="btn-primary" onclick="addToCart('Pizza Familiar Jamón Con Queso', 48000, 'pizza2')">Añadir al carrito</button>
-      </div>
-      <div class="menu-item">
-        <alt="Pizza Familiar Hawaiana">
-        <h3>Pizza Familiar Hawaiana</h3>
-        <span>$54000.00</span>
-        <div class="quantity-control">
-          <button onclick="changeQuantity('pizza3', -1)">-</button>
-          <input type="number" id="pizza3" value="0" min="0" max="50" readonly>
-          <button onclick="changeQuantity('pizza3', 1)">+</button>
-        </div>
-        <button class="btn-primary" onclick="addToCart('Pizza Familiar Hawaiana', 54000, 'pizza3')">Añadir al carrito</button>
-      </div>
-      <div class="menu-item">
-        <alt="Pizza Familiar Campesina">
-        <h3>Pizza Familiar Campesina</h3>
-        <span>$54000.00</span>
-        <div class="quantity-control">
-          <button onclick="changeQuantity('pizza4', -1)">-</button>
-          <input type="number" id="pizza4" value="0" min="0" max="50" readonly>
-          <button onclick="changeQuantity('pizza4', 1)">+</button>
-        </div>
-        <button class="btn-primary" onclick="addToCart('Pizza Familiar Campesina', 54000, 'pizza4')">Añadir al carrito</button>
-      </div>
-      <div class="menu-item">
-        <alt="Pizza Familiar Pepperoni">
-        <h3>Pizza Familiar Pepperoni</h3>
-        <span>$54000.00</span>
-        <div class="quantity-control">
-          <button onclick="changeQuantity('pizza5', -1)">-</button>
-          <input type="number" id="pizza5" value="0" min="0" max="50" readonly>
-          <button onclick="changeQuantity('pizza5', 1)">+</button>
-        </div>
-        <button class="btn-primary" onclick="addToCart('Pizza Familiar Pepperoni', 54000, 'pizza5')">Añadir al carrito</button>
-      </div>
-      <div class="menu-item">
-        <alt="Pizza Familiar Champiñón Con Pollo">
-        <h3>Pizza Familiar Champiñón Con Pollo</h3>
-        <span>$54000.00</span>
-        <div class="quantity-control">
-          <button onclick="changeQuantity('pizza6', -1)">-</button>
-          <input type="number" id="pizza6" value="0" min="0" max="50" readonly>
-          <button onclick="changeQuantity('pizza6', 1)">+</button>
-        </div>
-        <button class="btn-primary" onclick="addToCart('Pizza Familiar Champiñón Con Pollo', 54000, 'pizza6')">Añadir al carrito</button>
-      </div>
-      <div class="menu-item">
-        <alt="Pizza Familiar Salami">
-        <h3>Pizza Familiar Salami</h3>
-        <span>$54000.00</span>
-        <div class="quantity-control">
-          <button onclick="changeQuantity('pizza7', -1)">-</button>
-          <input type="number" id="pizza7" value="0" min="0" max="50" readonly>
-          <button onclick="changeQuantity('pizza7', 1)">+</button>
-        </div>
-        <button class="btn-primary" onclick="addToCart('Pizza Familiar Salami', 54000, 'pizza7')">Añadir al carrito</button>
-      </div>
     <div id="pizzas" class="menu-section" style="display: none;">
       <!-- Menu de pizzas -->
       <div class="menu-item">
@@ -259,7 +178,7 @@
         <button class="btn-primary" onclick="addToCart('Botella de Agua', 800, 'drink1')">Añadir al carrito</button>
       </div>
       <div class="menu-item">
-        <img src="Images/hit.png" alt="Hit">
+        <img src="Images/hit-500ml.jpeg" alt="Hit">
         <h3>Hit</h3>
         <span>$3000.00</span>
         <div class="quantity-control">
