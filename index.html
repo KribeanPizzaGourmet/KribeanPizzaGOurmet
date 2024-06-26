@@ -45,6 +45,7 @@
     #cart-items div {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       margin-bottom: 10px;
     }
     .btn-primary {
@@ -80,9 +81,89 @@
   </section>
   <div class="container">
     <h2>Menú</h2>
+    <button class="btn-primary" onclick="toggleSection('pizzasCompletas')">Pizzas Familiares</button>
     <button class="btn-primary" onclick="toggleSection('pizzas')">Porciones De Pizza</button>
     <button class="btn-primary" onclick="toggleSection('bebidas')">Bebidas</button>
 
+    <div id="pizzasCompletas" class="menu-section" style="display: none;">
+      <!-- Menu de pizzas familiares -->
+      <div class="menu-item">
+        <alt="Pizza Pollo con Jamón">
+        <h3>Pizza Pollo con Jamón</h3>
+        <span>$48000.00</span>
+        <div class="quantity-control">
+          <button onclick="changeQuantity('pizza1', -1)">-</button>
+          <input type="number" id="pizza1" value="0" min="0" max="50" readonly>
+          <button onclick="changeQuantity('pizza1', 1)">+</button>
+        </div>
+        <button class="btn-primary" onclick="addToCart('Pizza Pollo con Jamón', 48000, 'pizza1')">Añadir al carrito</button>
+      </div>
+      <div class="menu-item">
+        <alt="Pizza Jamón Con Queso">
+        <h3>Pizza Jamón Con Queso</h3>
+        <span>$48000.00</span>
+        <div class="quantity-control">
+          <button onclick="changeQuantity('pizza2', -1)">-</button>
+          <input type="number" id="pizza2" value="0" min="0" max="50" readonly>
+          <button onclick="changeQuantity('pizza2', 1)">+</button>
+        </div>
+        <button class="btn-primary" onclick="addToCart('Pizza Jamón Con Queso', 48000, 'pizza2')">Añadir al carrito</button>
+      </div>
+      <div class="menu-item">
+        <alt="Pizza Hawaiana">
+        <h3>Pizza Hawaiana</h3>
+        <span>$54000.00</span>
+        <div class="quantity-control">
+          <button onclick="changeQuantity('pizza3', -1)">-</button>
+          <input type="number" id="pizza3" value="0" min="0" max="50" readonly>
+          <button onclick="changeQuantity('pizza3', 1)">+</button>
+        </div>
+        <button class="btn-primary" onclick="addToCart('Pizza Hawaiana', 54000, 'pizza3')">Añadir al carrito</button>
+      </div>
+      <div class="menu-item">
+        <alt="Pizza Campesina">
+        <h3>Pizza Campesina</h3>
+        <span>$54000.00</span>
+        <div class="quantity-control">
+          <button onclick="changeQuantity('pizza4', -1)">-</button>
+          <input type="number" id="pizza4" value="0" min="0" max="50" readonly>
+          <button onclick="changeQuantity('pizza4', 1)">+</button>
+        </div>
+        <button class="btn-primary" onclick="addToCart('Pizza Campesina', 54000, 'pizza4')">Añadir al carrito</button>
+      </div>
+      <div class="menu-item">
+        <alt="Pizza Pepperoni">
+        <h3>Pizza Pepperoni</h3>
+        <span>$54000.00</span>
+        <div class="quantity-control">
+          <button onclick="changeQuantity('pizza5', -1)">-</button>
+          <input type="number" id="pizza5" value="0" min="0" max="50" readonly>
+          <button onclick="changeQuantity('pizza5', 1)">+</button>
+        </div>
+        <button class="btn-primary" onclick="addToCart('Pizza Pepperoni', 54000, 'pizza5')">Añadir al carrito</button>
+      </div>
+      <div class="menu-item">
+        <alt="Pizza Champiñón Con Pollo">
+        <h3>Pizza Champiñón Con Pollo</h3>
+        <span>$54000.00</span>
+        <div class="quantity-control">
+          <button onclick="changeQuantity('pizza6', -1)">-</button>
+          <input type="number" id="pizza6" value="0" min="0" max="50" readonly>
+          <button onclick="changeQuantity('pizza6', 1)">+</button>
+        </div>
+        <button class="btn-primary" onclick="addToCart('Pizza Champiñón Con Pollo', 54000, 'pizza6')">Añadir al carrito</button>
+      </div>
+      <div class="menu-item">
+        <alt="Pizza Salami">
+        <h3>Pizza Salami</h3>
+        <span>$54000.00</span>
+        <div class="quantity-control">
+          <button onclick="changeQuantity('pizza7', -1)">-</button>
+          <input type="number" id="pizza7" value="0" min="0" max="50" readonly>
+          <button onclick="changeQuantity('pizza7', 1)">+</button>
+        </div>
+        <button class="btn-primary" onclick="addToCart('Pizza Salami', 54000, 'pizza7')">Añadir al carrito</button>
+      </div>
     <div id="pizzas" class="menu-section" style="display: none;">
       <!-- Menu de pizzas -->
       <div class="menu-item">
@@ -178,7 +259,7 @@
         <button class="btn-primary" onclick="addToCart('Botella de Agua', 800, 'drink1')">Añadir al carrito</button>
       </div>
       <div class="menu-item">
-        <img src="Images/hit-500ml.jpeg" alt="Hit">
+        <img src="Images/hit.png" alt="Hit">
         <h3>Hit</h3>
         <span>$3000.00</span>
         <div class="quantity-control">
@@ -244,18 +325,16 @@
     }
 
     function addToCart(name, price, quantityId) {
-      const quantity = document.getElementById(quantityId).value;
+      const quantity = parseInt(document.getElementById(quantityId).value);
       if (quantity > 0) {
-        for (let i = 0; i < quantity; i++) {
-          cart.push({name, price});
+        const existingItem = cart.find(item => item.name === name);
+        if (existingItem) {
+          existingItem.quantity += quantity;
+        } else {
+          cart.push({ name, price, quantity });
         }
         updateCart();
       }
-    }
-
-    function removeFromCart(index) {
-      cart.splice(index, 1);
-      updateCart();
     }
 
     function updateCart() {
@@ -264,16 +343,28 @@
       total = 0;
 
       cart.forEach((item, index) => {
-        total += item.price;
+        total += item.price * item.quantity;
         const cartItem = document.createElement('div');
         cartItem.innerHTML = `
-          <span>${item.name} - $${item.price.toFixed(2)}</span>
-          <button onclick="removeFromCart(${index})">Eliminar</button>
+          <span>${item.name} - $${item.price.toFixed(2)} x ${item.quantity}</span>
+          <div class="quantity-control">
+            <button onclick="changeCartItemQuantity(${index}, -1)">-</button>
+            <input type="number" value="${item.quantity}" min="0" max="50" readonly>
+            <button onclick="changeCartItemQuantity(${index}, 1)">+</button>
+          </div>
         `;
         cartItems.appendChild(cartItem);
       });
 
       document.getElementById('cart-total').innerText = `Total: $${total.toFixed(2)}`;
+    }
+
+    function changeCartItemQuantity(index, delta) {
+      cart[index].quantity += delta;
+      if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
+      }
+      updateCart();
     }
 
     function placeOrder() {
@@ -282,7 +373,7 @@
         return;
       }
 
-      const orderDetails = cart.map(item => item.name).join(', ');
+      const orderDetails = cart.map(item => `${item.quantity} x ${item.name}`).join(', ');
       const whatsappNumber = "+573186687044";
       const message = `Hola, me gustaría ordenar lo siguiente: ${orderDetails}. Total: $${total.toFixed(2)}`;
       const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
